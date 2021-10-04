@@ -1,0 +1,17 @@
+<div class="review" itemprop="reviews" itemscope itemtype="http://schema.org/Review">
+  <% if purchase_policy.approved? || Spree::SolidusAddPurchasePoliciesToAdminPanel::Config[:display_unapproved_purchase_policies] %>
+    <span itemprop="name"><%= purchase_policy.title %></span>
+    <br/>
+    <span class="attribution"><%= I18n.t("spree.submitted_on") %> <strong><%= l review.created_at.to_date %></strong></span>
+    <meta itemprop="datePublished" content="<%= review.created_at.to_date.to_s %>" />
+
+    <% if Spree::SolidusAddPurchasePoliciesToAdminPanel::Config[:show_email] && purchase_policy.user %>
+      <span itemprop="author"><%= purchase_policy.user.email %></span>
+    <% else %>
+      <span itemprop="author"><%= purchase_policy.name %></span>
+    <% end %>
+    <div itemprop="reviewBody">
+      <%= simple_format(purchase_policy.content) %>
+    </div>
+  <% end %>
+</div>

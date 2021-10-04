@@ -1,0 +1,41 @@
+<% content_for :page_title do %>
+	<%= I18n.t("spree.purchase_policy_type_for", purchase_policy: @purchase_policy.title) %>
+<% end %>
+
+<% content_for :page_actions do %>
+	<li><%= link_to I18n.t("spree.back_to_purchase_policies"), admin_purchase_policies_path %></li>
+<% end %>
+
+<% if @collection.any? %>
+	<table class="index">
+		<colgroup>
+			<col style="width: 30%;">
+			<col style="width: 20%;">
+			<col style="width: 20%;">
+			<col style="width: 17%;">
+		</colgroup>
+		<thead>
+			<tr>
+				<th><%= I18n.t("spree.user") %></th>
+				<th><%= I18n.t("spree.stars") %></th>
+				<th><%= I18n.t("spree.date") %></th>
+				<th class="actions"></th>
+			</tr>
+		</thead>
+		<tbody>
+		<%- @collection.each do |type| -%>
+			<tr id="<%= dom_id(type) %>">
+			  <td><%= l type.created_at %></td>
+			  <td><%= type.user.try(:login) || I18n.t("spree.anonymous") %></td>
+			  <td class="actions">
+				  <%= link_to_delete type, no_text: true  %>
+			  </td>
+			</tr>
+		<% end %>
+		</tbody>
+	</table>
+<% else %>
+	<div class="no-objects-found">
+		<%= I18n.t("spree.no_results") %>
+	</div>
+<% end %>

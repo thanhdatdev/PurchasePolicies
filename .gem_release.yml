@@ -1,0 +1,5 @@
+bump:
+  recurse: false
+  file: 'lib/solidus_add_purchase_policies_to_admin_panel/version.rb'
+  message: Bump SolidusAddPurchasePoliciesToAdminPanel to %{version}
+  tag: true

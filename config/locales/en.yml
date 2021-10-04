@@ -1,0 +1,50 @@
+# Sample localization file for English. Add more files in this directory for other locales.
+# See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
+
+en:
+  activerecord:
+    attributes:
+      spree/purchase_policy:
+        title: Title
+        content: Content
+        created_at: Date
+        user: User
+  spree:
+    said: said
+    for: for
+    none: None
+    title: Title
+    content: Content
+    created_at: Date
+    user: User
+    approval_status: Approval status
+    approved_purchase_policies: Approved
+    unapproved_purchase_policies: Unapproved
+    purchase_policies: Purchase Policies
+    purchase_policies_count: Purchase Policies (%{count})
+    purchase_policy: Purchase Policies
+    creator: Creator
+    new_purchase_policy: Add New Purchase Policy
+    new_purchase_policy_type: Add New Purchase Policy Type
+    purchase_policy_type: Purchase Policy Type
+    manage_purchase_policy_types: Manage Purchase Policy Types
+    applies_to: Applies To
+    new_purchase_policy_type: New Purchase Policy Type
+    editing_purchase_policy_type: Editing Purchase Policy Type
+    back_to_purchase_policy_types_list: Back To Purchase Policy Types List
+    submit_your_purchase_policy: Submit your purchase policy
+    submitted_on: Submitted on
+    leave_us_a_purchase_policy_for: "Please leave us a review and a rating for our '%{name}'"
+    admin:
+      tab:
+        purchase_policies: Purchase Policies
+        purchase_policies_management: Purchase Policies
+    purchase_policy_successfully_submitted: PurchasePolicy was successfully submitted
+    spree_purchase_policies:
+      display_unapproved: Display unapproved purchase policies in listings
+      include_unapproved: Include unapproved purchase policies in listings
+      purchase_policy_settings: Control the display of purchase policies
+      show_email: Show email addresses
+      require_login: Require user to be logged in
+      purchase_policy_types: Purchase Policy Types
+    anonymous: Anonymous

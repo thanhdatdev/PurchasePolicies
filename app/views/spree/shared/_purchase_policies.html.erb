@@ -1,0 +1,12 @@
+<div id="reviews">
+  <h6 class="product-section-title"><%= I18n.t("spree.purchase_policies") %></h6>
+  <% if Spree::SolidusAddPurchasePoliciesToAdminPanel::Config[:include_unapproved_reviews] == false  %>
+    <p class="reviews-none"><%= I18n.t("spree.no_reviews_available") %></p>
+  <% else %>
+      <%= render 'spree/shared/review', purchase_policy: purchase_policy %>
+  <% end %>
+  <% if !Spree::SolidusAddPurchasePoliciesToAdminPanel::Config[:require_login] || spree_current_user %>
+    <%= link_to I18n.t("spree.write_your_own_review"), new_purchase_policy_path, class: "button",
+                rel: 'nofollow' %>
+  <% end %>
+</div>

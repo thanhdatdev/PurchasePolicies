@@ -1,0 +1,10 @@
+<%= render "spree/shared/error_messages", target: @purchase_policy %>
+<%= f.field_container :title do %>
+  <%= f.label :title %><br/>
+  <%= f.text_field :title, maxlength: "255", size: "60" %>
+<% end %>
+
+<%= f.field_container :content do %>
+  <%= f.label :content %><br/>
+  <%= f.text_area :content, wrap: "virtual", rows: "10", cols: "60" %>
+<% end %>

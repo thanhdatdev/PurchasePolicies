@@ -1,0 +1,115 @@
+<% admin_breadcrumb(link_to plural_resource_name(Spree::User), spree.admin_users_path) %>
+
+<% content_for :page_title do %>
+  <%= I18n.t("spree.purchase_policies") %>
+<% end %>
+
+<% content_for :page_actions do %>
+  <li>
+    <%= link_to I18n.t('spree.new_purchase_policy'), new_object_url, :icon => 'icon-plus', :id => 'admin_new_purchase_policy_link' %>
+  </li>
+<% end %>
+
+<% content_for :table_filter_title do %>
+  <% if can? :display, Spree::PurchasePolicy %>
+    <%= I18n.t("spree.search") %>
+  <% end %>
+<% end %>
+
+<% content_for :table_filter do %>
+  <div data-hook="admin_purchase_policies_index_search">
+    <%= search_form_for [:admin, @search] do |f| %>
+
+      <div class="seven columns">
+        <div class="field">
+          <%= f.label :title_cont, I18n.t("spree.title") -%><br/>
+          <%= f.text_field :title_cont, class: 'fullwidth'  -%>
+        </div>
+      </div>
+
+      <div class="four columns">
+        <div class="field">
+          <%= f.label :content_cont, I18n.t("spree.content") -%><br/>
+          <%= f.text_field :content_cont, class: 'fullwidth'  -%>
+        </div>
+      </div>
+
+      <div class="two columns omega">
+        <div class="field">
+          <%= f.label :approved_eq, I18n.t("spree.approval_status")-%><br/>
+          <%= f.select :approved_eq, [
+              [I18n.t("spree.all"), nil],
+              [I18n.t("spree.approved_purchase_policies"), true],
+              [I18n.t("spree.unapproved_purchase_policies"), false]
+            ], {}, class: 'select2 fullwidth'  -%>
+        </div>
+      </div>
+
+      <div class="clear"></div>
+
+      <div class="form-buttons actions filter-actions" data-hook="admin_purchase_policies_index_search_buttons">
+        <%= button_tag I18n.t("spree.search") %>
+      </div>
+    <%- end -%>
+  </div>
+<%- end -%>
+
+<%= paginate @purchase_policies, theme: "solidus_admin" %>
+
+<% if @purchase_policies.any? %>
+  <table class="index">
+    <colgroup>
+      <col style="width: 20%;">
+      <col style="width: 10%;">
+      <col style="width: 10%;">
+      <col style="width: 15%;">
+      <col style="width: 15%;">
+      <col style="width: 15%;">
+      <col style="width: 17%;">
+    </colgroup>
+    <thead>
+      <tr>
+        <th><%= Spree::PurchasePolicy.human_attribute_name(:user) %></th>
+        <th><%= Spree::PurchasePolicy.human_attribute_name(:purchase_policy_type) %></th>
+        <th><%= Spree::PurchasePolicy.human_attribute_name(:title) %></th>
+        <th><%= Spree::PurchasePolicy.human_attribute_name(:content) %></th>
+        <th><%= Spree::PurchasePolicy.human_attribute_name(:created_at) %></th>
+        <th class="actions"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <%- @purchase_policies.each do |purchase_policy| -%>
+        <tr id="<%= dom_id purchase_policy %>">
+          <td class="align-center">
+            <p><%= purchase_policy.user_id ? link_to(purchase_policy.user.try(:email), [:admin, purchase_policy.user]) : I18n.t("spree.anonymous") %></p>
+          </td>
+          <td class="align-center">
+            <p><%= purchase_policy.purchase_policy_type.name %></p>
+          </td>
+          <td class="align-center">
+            <p><%= purchase_policy.title %></p>
+          </td>
+          <td class="align-center">
+            <p><%= purchase_policy.content %></p>
+          </td>
+          <td class="align-center">
+            <%= l purchase_policy.created_at, format: :short %>
+          </td>
+          <td class="actions">
+            <% if can? :manage, Spree::PurchasePolicy %>
+              <%= link_to_with_icon 'ok', I18n.t("spree.approve"), approve_admin_purchase_policy_url(purchase_policy), no_text: true, class: 'approve' unless purchase_policy.approved %>
+              <%= link_to_edit purchase_policy, no_text: true, class: 'edit' %>
+              <%= link_to_delete purchase_policy, no_text: true %>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <div class="no-objects-found">
+    <%= I18n.t("spree.no_results") %>
+  </div>
+<% end %>
+
+<%= paginate @purchase_policies, theme: "solidus_admin" -%>

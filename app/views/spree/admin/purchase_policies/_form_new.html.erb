@@ -1,0 +1,24 @@
+<%= form_for purchase_policy, url: admin_purchase_policies_path, html: { method: :post, multipart: true} do |f| %>
+  <%= render "spree/shared/error_messages", target: purchase_policy %>
+
+  <div class="two columns omega">
+    <div class="field">
+      <%= f.label :purchase_policy_type, I18n.t("spree.purchase_policy_type") %><br/>
+      <%= f.collection_select :purchase_policy_type, Spree::PurchasePolicyType.all, :id, :name %>
+    </div>
+  </div>
+
+  <p class="review_title_field">
+    <%= f.label :title %><br />
+    <%= f.text_field :title, maxlength: "255", size: "50" %>
+  </p>
+
+  <p class="review_review_field">
+    <%= f.label :content %><br />
+    <%= f.text_area :content, wrap: "virtual", rows: "10", cols: "50" %>
+  </p>
+
+  <p class="review_submit">
+    <%= f.submit I18n.t("spree.submit_your_purchase_policy"), class: "button bg_darkfirst" %>
+  </p>
+<% end %>

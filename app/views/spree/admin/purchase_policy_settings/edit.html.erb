@@ -1,0 +1,49 @@
+<% content_for :page_title do %>
+  <%= I18n.t("spree.spree_purchase_policies.purchase_policy_settings") %>
+<% end %>
+
+<% admin_breadcrumb(I18n.t("spree.settings")) %>
+
+<% content_for :tabs do %>
+  <nav>
+    <ul class="tabs">
+      <%= settings_tab_item I18n.t("spree.spree_purchase_policies.purchase_policy_settings"), spree.admin_purchase_policy_settings_path %>
+    </ul>
+  </nav>
+<% end %>
+
+<%= form_tag(admin_purchase_policy_settings_path, method: :put) do %>
+  <fieldset class="no-border-top">
+    <div class="field">
+      <label>
+        <%= check_box_tag('preferences[include_unapproved_purchase_policies]', "1", Spree::SolidusAddPurchasePoliciesToAdminPanel::Config[:include_unapproved_purchase_policies]) %>
+        <%= I18n.t("spree.spree_purchase_policies.include_unapproved") %>
+      </label>
+    </div>
+    <div class="field">
+      <label>
+        <%= check_box_tag('preferences[display_unapproved_purchase_policies', "1", Spree::SolidusAddPurchasePoliciesToAdminPanel::Config[:display_unapproved_purchase_policies]) %>
+        <%= I18n.t("spree.spree_purchase_policies.display_unapproved") %>
+      </label>
+    </div>
+
+    <div class="field">
+      <label>
+        <%= check_box_tag('preferences[show_email]', "1", Spree::SolidusAddPurchasePoliciesToAdminPanel::Config[:show_email]) %>
+        <%= I18n.t("spree.spree_purchase_policies.show_email") %>
+      </label>
+    </div>
+
+    <div class="field">
+      <label>
+        <%= check_box_tag('preferences[require_login]', "1", Spree::SolidusAddPurchasePoliciesToAdminPanel::Config[:require_login]) %>
+        <%= I18n.t("spree.spree_purchase_policies.require_login") %>
+      </label>
+    </div>
+
+    <div class="form-buttons filter-actions actions" data-hook="buttons">
+      <%= button_tag I18n.t("spree.actions.update") %>
+      <%= link_to I18n.t("spree.actions.cancel"), edit_admin_general_settings_url, class: 'button' %>
+    </div>
+  </fieldset>
+<% end %>

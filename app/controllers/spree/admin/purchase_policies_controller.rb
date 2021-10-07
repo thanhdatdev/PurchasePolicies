@@ -2,6 +2,7 @@
 
 class Spree::Admin::PurchasePoliciesController < Spree::Admin::ResourceController
 
+  belongs_to 'spree/purchase_policy_type'
   def index
     @purchase_policies = collection
   end

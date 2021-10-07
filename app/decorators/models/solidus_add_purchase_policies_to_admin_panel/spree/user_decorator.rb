@@ -6,6 +6,7 @@ module SolidusAddPurchasePoliciesToAdminPanel
       def self.prepended(base)
         base.class_eval do
           has_many :purchase_policies, class_name: 'Spree::PurchasePolicy'
+          has_many :purchase_policy_types, class_name: 'Spree::PurchasePolicyType'
         end
       end
 

@@ -3,7 +3,6 @@
 require_relative 'lib/solidus_add_purchase_policies_to_admin_panel/version'
 
 Gem::Specification.new do |spec|
-  spec.platform    = Gem::Platform::RUBY
   spec.name = 'solidus_add_purchase_policies_to_admin_panel'
   spec.version = SolidusAddPurchasePoliciesToAdminPanel::VERSION
   spec.authors = ['thanhdatdev']
@@ -30,10 +29,7 @@ Gem::Specification.new do |spec|
   spec.executables = files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.require_paths = ["lib"]
 
-  spec.add_dependency 'deface', '~> 1.5'
-  spec.add_dependency 'solidus_api', ['>= 2.0.0', '< 4']
   spec.add_dependency 'solidus_core', ['>= 2.0.0', '< 4']
-  spec.add_dependency 'solidus_backend', ['>= 2.0.0', '< 4']
   spec.add_dependency 'solidus_support', '~> 0.5'
 
   spec.add_development_dependency 'solidus_dev_support', '~> 2.5'

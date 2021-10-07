@@ -1,18 +1,19 @@
 # frozen_string_literal: true
 
-require 'spree/core'
+require 'solidus_core'
+require 'solidus_support'
 
 module SolidusAddPurchasePoliciesToAdminPanel
   class Engine < Rails::Engine
     include SolidusSupport::EngineExtensions
 
-    isolate_namespace Spree
+    isolate_namespace ::Spree
 
     engine_name 'solidus_add_purchase_policies_to_admin_panel'
 
-
-    config.to_prepare do
-      ::Spree::Ability.register_ability(::Spree::PurchasePoliciesAbility)
+    # use rspec for tests
+    config.generators do |g|
+      g.test_framework :rspec
     end
 
     if SolidusSupport.api_available?

@@ -7,8 +7,8 @@ module SolidusAddPurchasePoliciesToAdminPanel
         def self.prepended(base)
           base.module_eval do
             @@purchase_policy_attributes = [
-              :id, :purchase_policy_title, :purchase_policy_content, :approved,
-              :created_at, :updated_at, :user_id
+              :id, :title, :content, :approved,
+              :created_at, :updated_at, :user_id, :purchase_policy_type_id
             ]
 
             @@purchase_policy_type_attributes = [

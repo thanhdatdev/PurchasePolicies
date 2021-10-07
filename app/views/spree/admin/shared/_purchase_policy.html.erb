@@ -1,0 +1,26 @@
+<table class="index">
+  <colgroup>
+    <col style="width: 18%" />
+    <col style="width: 15%" />
+    <col style="width: 20%" />
+    <col style="width: 47%" />
+  </colgroup>
+  <thead>
+    <tr>
+      <th><%= "#{t('spree.date')}/#{t('spree.time')}" %></th>
+      <th><%= I18n.t('spree.type') %></th>
+      <th><%= I18n.t('spree.commenter') %></th>
+      <th><%= I18n.t('spree.purchase_policies') %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% purchase_policies.reverse.each_with_index do |purchase_policy, index| %>
+      <tr class="<%= cycle('odd', 'even')%>">
+        <td class='align-center'><%= pretty_time(purchase_policy.created_at) %></td>
+        <td class='align-center'><%= purchase_policy.purchase_policy_type.try(:name) || I18n.t('spree.none') %></td>
+        <td class='align-center'><%= purchase_policy.user.try(:email) %></td>
+        <td><%= purchase_policy.purchase_policy_content.html_safe %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

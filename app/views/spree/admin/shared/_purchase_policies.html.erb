@@ -1,0 +1,42 @@
+<% if purchase_policies.any? %>
+  <%= render 'spree/admin/shared/purchase_policy' %>
+<% else %>
+  <div class="alpha twelve columns no-objects-found">
+    <%= I18n.t('spree.no_resource_found', resource: I18n.t(:purchase_policies, scope: 'spree')) %>
+  </div>
+<% end %>
+
+<% if can? :create, purchase_policies.build %>
+  <div class="order-add-comment">
+    <%= form_for(:purchase_policy, :url => admin_purchase_policies_path_url) do |f| %>
+      <%= hidden_field_tag 'purchase_policy[user_id]', spree_current_user.id %>
+
+      <fieldset data-hook="admin_comment_form_fields" class="no-border-top fullwidth">
+        <fieldset class="index no-border-bottom">
+          <legend align="center"><%= I18n.t('spree.add_purchase_policy') %></legend>
+
+          <div data-hook="comment_fields" class="row">
+            <div class="alpha twelve columns">
+              <% if @purchase_policy_types.present? %>
+                <div class="field">
+                  <%= f.label :purchase_policy_type_id, I18n.t('spree.type') %>
+                  <%= f.select :purchase_policy_type_id, @purchase_policy_types.map{|ct| [ct.name, ct.id]},{} ,:class => 'fullwidth' %>
+                </div>
+              <% end %>
+              <div class="field">
+                <%= f.label :purchase_policy, I18n.t('spree.purchase_policy') %>
+                <%= f.text_area :purchase_policy, :style => 'height:150px;', :class => 'fullwidth' %>
+              </div>
+            </div>
+          </div>
+        </fieldset>
+
+        <div class="clear"></div>
+
+        <div class="form-buttons filter-actions actions" data-hook="buttons">
+          <%= f.submit I18n.t('spree.add_purchase_policy') %>
+        </div>
+      </fieldset>
+    <% end %>
+  </div>
+<% end %>

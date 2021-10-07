@@ -1,7 +1,7 @@
 # Solidus Add Purchase Policies To Admin Panel
 
-[![CircleCI](https://circleci.com/gh/thanhdatdev/zenapp.svg?style=shield)](https://circleci.com/gh/thanhdatdev/zenapp)
-[![codecov](https://codecov.io/gh/thanhdatdev/zenapp/branch/master/graph/badge.svg)](https://codecov.io/gh/thanhdatdev/zenapp)
+[![CircleCI](https://circleci.com/gh/thanhdatdev/PurchasePolicies.svg?style=shield)](https://circleci.com/gh/thanhdatdev/PurchasePolicies)
+[![codecov](https://codecov.io/gh/thanhdatdev/PurchasePolicies/branch/master/graph/badge.svg)](https://codecov.io/gh/thanhdatdev/PurchasePolicies)
 
 <!-- Explain what your extension does. -->
 

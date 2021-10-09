@@ -3,8 +3,8 @@
 
   <div class="two columns omega">
     <div class="field">
-      <%= f.label :purchase_policy_type, I18n.t("spree.purchase_policy_type") %><br/>
-      <%= f.collection_select :purchase_policy_type, Spree::PurchasePolicyType.all, :id, :name %>
+      <%= f.label :purchase_policy_type, I18n.t("spree.purchase_policy_types") %><br/>
+      <%= f.select :purchase_policy_type_id, Spree::PurchasePolicyType.all.collect {|c| [ c.name, c.id ]} %>
     </div>
   </div>
 

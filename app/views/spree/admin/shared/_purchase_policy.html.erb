@@ -19,7 +19,7 @@
         <td class='align-center'><%= pretty_time(purchase_policy.created_at) %></td>
         <td class='align-center'><%= purchase_policy.purchase_policy_type.try(:name) || I18n.t('spree.none') %></td>
         <td class='align-center'><%= purchase_policy.user.try(:email) %></td>
-        <td><%= purchase_policy.purchase_policy_content.html_safe %></td>
+        <td><%= purchase_policy.content.html_safe %></td>
       </tr>
     <% end %>
   </tbody>

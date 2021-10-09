@@ -6,21 +6,13 @@ Spree::Core::Engine.routes.draw do
       member do
         get :approve
       end
-      resources :purchase_policy_types
     end
+    resources :purchase_policy_types
     resource :purchase_policy_settings, only: [:edit, :update]
   end
-  post '/purchase_policies/:purchase_policy_id/purchase_policy_type(.:format)' => 'purchase_policy_types#edit', as: :admin_edit_purchase_policy_type
+  # post '/purchase_policy_types/:purchase_policy_type_id/purchase_policies' => 'purchase_policy_types#show', as: :show_all_purchase_policies
 
-  resources :purchase_policy_types do
-    resources :purchase_policies
-  end
-
-  if SolidusSupport.api_available?
-    namespace :api, defaults: { format: 'json' } do
-      resources :purchase_policies, only: [:show, :create, :update, :destroy]
-
-      resources :purchase_policy_types, only: [:create, :update, :destroy]
-    end
+  resources :purchase_policy_types, only: [:index] do
+    resources :purchase_policies, only: [:show]
   end
 end

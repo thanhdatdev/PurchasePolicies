@@ -16,11 +16,11 @@ module SolidusAddPurchasePoliciesToAdminPanel
             ]
 
             def purchase_policy_attributes
-              @@review_attributes
+              @@purchase_policy_attributes
             end
 
             def purchase_policy_type_attributes
-              @@feedback_review_attributes
+              @@purchase_policy_type_attributes
             end
           end
         end

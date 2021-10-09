@@ -1,41 +1,92 @@
+<% admin_breadcrumb(link_to plural_resource_name(Spree::User), spree.admin_users_path) %>
+
 <% content_for :page_title do %>
-	<%= I18n.t("spree.purchase_policy_type_for", purchase_policy: @purchase_policy.title) %>
+  <%= I18n.t("spree.purchase_policy_types") %>
 <% end %>
 
 <% content_for :page_actions do %>
-	<li><%= link_to I18n.t("spree.back_to_purchase_policies"), admin_purchase_policies_path %></li>
+  <li>
+    <%= link_to I18n.t('spree.new_purchase_policy_type'), new_object_url, :icon => 'icon-plus', :id => 'admin_new_purchase_policy_type_link' %>
+  </li>
 <% end %>
 
-<% if @collection.any? %>
-	<table class="index">
-		<colgroup>
-			<col style="width: 30%;">
-			<col style="width: 20%;">
-			<col style="width: 20%;">
-			<col style="width: 17%;">
-		</colgroup>
-		<thead>
-			<tr>
-				<th><%= I18n.t("spree.user") %></th>
-				<th><%= I18n.t("spree.stars") %></th>
-				<th><%= I18n.t("spree.date") %></th>
-				<th class="actions"></th>
-			</tr>
-		</thead>
-		<tbody>
-		<%- @collection.each do |type| -%>
-			<tr id="<%= dom_id(type) %>">
-			  <td><%= l type.created_at %></td>
-			  <td><%= type.user.try(:login) || I18n.t("spree.anonymous") %></td>
-			  <td class="actions">
-				  <%= link_to_delete type, no_text: true  %>
-			  </td>
-			</tr>
-		<% end %>
-		</tbody>
-	</table>
-<% else %>
-	<div class="no-objects-found">
-		<%= I18n.t("spree.no_results") %>
-	</div>
+<% content_for :table_filter_title do %>
+  <% if can? :display, Spree::PurchasePolicyType %>
+    <%= I18n.t("spree.search") %>
+  <% end %>
 <% end %>
+
+<% content_for :table_filter do %>
+  <div data-hook="admin_purchase_policy_types_index_search">
+    <%= search_form_for [:admin, @search] do |f| %>
+
+      <div class="seven columns">
+        <div class="field">
+          <%= f.label :name_cont, I18n.t("spree.name") -%><br/>
+          <%= f.text_field :name_cont, class: 'fullwidth'  -%>
+        </div>
+      </div>
+
+      <div class="clear"></div>
+
+      <div class="form-buttons actions filter-actions" data-hook="admin_purchase_policy_type_index_search_buttons">
+        <%= button_tag I18n.t("spree.search") %>
+      </div>
+    <%- end -%>
+  </div>
+<%- end -%>
+
+<%= paginate @purchase_policy_types, theme: "solidus_admin" %>
+
+<% if @purchase_policy_types.any? %>
+  <table class="index">
+    <colgroup>
+      <col style="width: 20%;">
+      <col style="width: 30%;">
+      <col style="width: 10%;">
+      <col style="width: 15%;">
+    </colgroup>
+    <thead>
+      <tr>
+        <th><%= Spree::PurchasePolicyType.human_attribute_name(:user) %></th>
+        <th><%= Spree::PurchasePolicyType.human_attribute_name(:purchase_policies) %></th>
+        <th><%= Spree::PurchasePolicyType.human_attribute_name(:name) %></th>
+        <th><%= Spree::PurchasePolicyType.human_attribute_name(:created_at) %></th>
+        <th class="actions"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <%- @purchase_policy_types.each do |type| -%>
+        <tr id="<%= dom_id type %>">
+          <td class="align-center">
+            <p><%= type.user_id ? link_to(type.user.try(:email), [:admin, type.user]) : I18n.t("spree.anonymous") %></p>
+          </td>
+          <td class="align-center">
+            <p><% type.purchase_policies.each do |policy| %>
+								<%= link_to policy.title, admin_purchase_policy_path(policy) %>
+							<% end %>
+						</p>
+          </td>
+          <td class="align-center">
+            <p><%= type.name %></p>
+          </td>
+          <td class="align-center">
+            <%= l type.created_at, format: :short %>
+          </td>
+          <td class="actions">
+            <% if can? :manage, Spree::PurchasePolicyType %>
+              <%= link_to_edit type, no_text: true, class: 'edit' %>
+              <%= link_to_delete type, no_text: true %>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <div class="no-objects-found">
+    <%= I18n.t("spree.no_results") %>
+  </div>
+<% end %>
+
+<%= paginate @purchase_policy_types, theme: "solidus_admin" -%>

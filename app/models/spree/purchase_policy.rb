@@ -3,7 +3,7 @@
 class Spree::PurchasePolicy < ApplicationRecord
   belongs_to   :user, class_name: Spree.user_class.to_s, optional: true
   belongs_to   :purchase_policy_type
-  before_save :approve_purchase_policy, unless: :approved?
+  before_save  :approve_purchase_policy, unless: :approved?
   default_scope { order("spree_purchase_policies.created_at DESC") }
 
   scope :approved, -> { where(approved: true) }
@@ -15,7 +15,7 @@ class Spree::PurchasePolicy < ApplicationRecord
   end
 
   def star_only?
-    [title, content].all?(&:blank?)
+    [title, content, purchase_policy_type].all?(&:blank?)
   end
 
   def approve_purchase_policy

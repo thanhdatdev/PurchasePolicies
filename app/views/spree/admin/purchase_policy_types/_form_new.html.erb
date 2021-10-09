@@ -1,0 +1,12 @@
+<%= form_for purchase_policy_type, url: admin_purchase_policy_types_path, html: { method: :post, multipart: true} do |f| %>
+  <%= render "spree/shared/error_messages", target: purchase_policy_type %>
+
+  <p class="review_title_field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name, maxlength: "255", size: "50" %>
+  </p>
+
+  <p class="review_submit">
+    <%= f.submit I18n.t("spree.submit_your_purchase_policy_type"), class: "button bg_darkfirst" %>
+  </p>
+<% end %>

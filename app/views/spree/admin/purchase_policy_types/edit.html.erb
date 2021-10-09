@@ -1,0 +1,26 @@
+<% content_for :page_title do %>
+	<%= I18n.t("spree.editing_purchase_policy_for_html", user_name: @purchase_policy_type.user.email) %>
+<% end %>
+
+<%= form_for([:admin, @purchase_policy_type]) do |f| %>
+	<div class="alpha eight columns">
+		<% unless @purchase_policy_type.user.blank? %>
+			<h2><%= @purchase_policy_type.user.email %></h2>
+		<% end %>
+		<p>
+			<%= simple_format(@purchase_policy_type.name) %>
+		</p>
+	</div>
+
+	<div class="omega eight columns">
+		<%= render 'form_edit', f: f %>
+	</div>
+
+	<div class="clear"></div>
+
+	<fieldset class="no-border-top">
+		<% if can? :manage, Spree::PurchasePolicyType %>
+			<%= render 'spree/admin/shared/edit_resource_links' %>
+		<% end %>
+	</fieldset>
+<% end %>

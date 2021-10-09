@@ -1,4 +1,10 @@
 <%= render "spree/shared/error_messages", target: @purchase_policy %>
+
+<%= f.field_container :purchase_policy_type do %>
+  <%= f.label :purchase_policy_type, I18n.t("spree.purchase_policy_type") %><br/>
+  <%= f.select :purchase_policy_type_id, Spree::PurchasePolicyType.all.collect {|c| [ c.name, c.id ]} %>
+<% end %>
+
 <%= f.field_container :title do %>
   <%= f.label :title %><br/>
   <%= f.text_field :title, maxlength: "255", size: "60" %>

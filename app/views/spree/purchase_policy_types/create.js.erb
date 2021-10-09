@@ -1,3 +1,0 @@
-<% if @purchase_policy_type.valid? %>
-  $("div#purchase_policy_type<%= @purchase_policy.id %>").html("<%= escape_javascript(render('spree/purchase_policy_types/form', purchase_policy: @purchase_policy)) %>");
-<% end %>

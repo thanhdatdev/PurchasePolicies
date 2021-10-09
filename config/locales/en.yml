@@ -26,19 +26,26 @@ en:
     creator: Creator
     new_purchase_policy: Add New Purchase Policy
     new_purchase_policy_type: Add New Purchase Policy Type
-    purchase_policy_type: Purchase Policy Type
+    purchase_policy_types: Purchase Policy Types
     manage_purchase_policy_types: Manage Purchase Policy Types
     applies_to: Applies To
     new_purchase_policy_type: New Purchase Policy Type
     editing_purchase_policy_type: Editing Purchase Policy Type
     back_to_purchase_policy_types_list: Back To Purchase Policy Types List
     submit_your_purchase_policy: Submit your purchase policy
+    submit_your_purchase_policy_type: Submit your purchase policy type
     submitted_on: Submitted on
     leave_us_a_purchase_policy_for: "Please leave us a review and a rating for our '%{name}'"
+    editing_purchase_policy_for_html: Edit Purchase Policy
+    purchase_policy_type_successfully_submitted: Add New Purchase Policy Type Successfully
+    purchase_policy_successfully_submitted: Add New Purchase Policy Successfully
+    update_successfully_submitted: Purchase Policy Updated
     admin:
       tab:
         purchase_policies: Purchase Policies
-        purchase_policies_management: Purchase Policies
+        purchase_policies_management: Purchase Policies Management
+        purchase_policy_types_management: Purchase Policy Types Management
+
     purchase_policy_successfully_submitted: PurchasePolicy was successfully submitted
     spree_purchase_policies:
       display_unapproved: Display unapproved purchase policies in listings

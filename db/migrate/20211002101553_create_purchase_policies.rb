@@ -1,9 +1,9 @@
-class CreatePurchasePolicies < SolidusSupport::Migration[5.1]
+class CreatePurchasePolicies < SolidusSupport::Migration[6.1]
   def change
     create_table  :spree_purchase_policies do |t|
 
-      t.belongs_to   :user
-      t.belongs_to   :purchase_policy_type
+      t.integer      :user_id
+      t.integer      :purchase_policy_type_id
       t.text         :title, limit: 50
       t.text         :content
       t.boolean      :approved, default: false

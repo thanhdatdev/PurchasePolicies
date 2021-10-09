@@ -1,0 +1,6 @@
+<%= render "spree/shared/error_messages", target: @purchase_policy_type %>
+
+<%= f.field_container :name do %>
+  <%= f.label :name %><br/>
+  <%= f.text_field :name, maxlength: "255", size: "60" %>
+<% end %>
